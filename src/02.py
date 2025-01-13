@@ -45,7 +45,7 @@ prompt_template = ChatPromptTemplate.from_messages(
 #     [("system", "Translate the folowing from English into {language}"), ("user", "{text}")]
 # )
 #
-# ex2
+# ex2)
 # system_template = "Translate the folowing from English into {language}"
 # user_template = "{text}"
 # prompt_template = ChatPromptTemplate.from_messages(
