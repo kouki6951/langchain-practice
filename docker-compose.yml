@@ -1,0 +1,13 @@
+version: "3.8"
+
+services:
+  langchain:
+    build: .
+    container_name: langchain_app
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    command: sh -c "while true; do sleep 3600; done"
