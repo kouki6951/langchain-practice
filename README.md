@@ -34,7 +34,9 @@ docker-compose up
 │   ├── test.py         # LangSmith疎通確認用コード
 │   ├── 00.py           # 環境変数確認用コード
 │   ├── 01.py           # Build a simple LLM application with chat models and prompt templates ~Using Language Models~
-│   └── 02.py           # Build a simple LLM application with chat models and prompt templates ~Prompt Templates~
+│   ├── 02.py           # Build a simple LLM application with chat models and prompt templates ~Prompt Templates~
+│   ├── 03.py           # Build a Simple LLM Application with LCEL ~Using Language Models~         
+│   └── 04.py           # Build a Simple LLM Application with LCEL ~OutputParsers~
 ├── Dockerfile          # アプリケーション用 Dockerfile
 ├── requirements.txt    # Python依存パッケージ定義ファイル
 └── README.md
