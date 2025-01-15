@@ -35,8 +35,13 @@ docker-compose up
 │   ├── 00.py           # 環境変数確認用コード
 │   ├── 01.py           # Build a simple LLM application with chat models and prompt templates ~Using Language Models~
 │   ├── 02.py           # Build a simple LLM application with chat models and prompt templates ~Prompt Templates~
-│   ├── 03.py           # Build a Simple LLM Application with LCEL ~Using Language Models~         
-│   └── 04.py           # Build a Simple LLM Application with LCEL ~OutputParsers~
+│   ├── 03.py           # Build a Simple LLM Application with LCEL ~Using Language Models~    
+│   ├── 04.py           # Build a Simple LLM Application with LCEL ~OutputParsers~    
+│   ├── 05.py           # Build a Simple LLM Application with LCEL ~Prompt Templates~    
+│   ├── 06.py           # Build a Simple LLM Application with LCEL ~Chaining together components with LCEL~    
+│   ├── serve.py        # Build a Simple LLM Application with LCEL ~Serving with LangServe~  ☆詳細は後述
+│   ├── client.py       # Build a Simple LLM Application with LCEL ~Serving with LangServe~  ☆詳細は後述     
+│   └── 04.py           # 
 ├── Dockerfile          # アプリケーション用 Dockerfile
 ├── requirements.txt    # Python依存パッケージ定義ファイル
 └── README.md
@@ -114,3 +119,35 @@ python /app/src/test.py
 正常に設定が完了すると以下のように表示される
 
 ![](./image/07.png)
+
+## Build a Simple LLM Application with LCELのServing with LangServe
+本章ではLCELで構築したLLMアプリケーションをLangServeを用いてLangChainチェーンをREST APIとして展開し、実際にそのAPIにアクセスしてレスポンスを取得する。
+
+### serve.py
+LLMアプリケーション本体。localhost:8001で公開される。
+
+### client.py
+LLMアプリケーションにアクセスするためのクライアント。
+
+### 実行手順
+
+#### 1. 稼働しているDockerにSSH接続したターミナルを２つ用意する
+![](./image/08.png)
+
+#### 2. 片方のターミナルで以下のコマンドを実行する
+
+```
+python /app/src/serve.py
+```
+
+LangServeが正常に立ち上がると以下のような表示になる(左のターミナルで実行)
+![](./image/09.png)
+
+### 3. もう片方のターミナルで以下のコマンドを実行する
+
+```
+python /app/src/client.py
+```
+
+clientが正常に実行されるとLLMからのレスポンスがターミナルに表示される
+![](./image/10.png)
