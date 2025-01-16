@@ -10,6 +10,7 @@ services:
       - LANGCHAIN_API_KEY=${LANGSMITH_API_KEY}
       - LANGCHAIN_ENDPOINT=${LANGSMITH_ENDPOINT}
       - LANGSMITH_PROJECT=${LANGSMITH_PROJECT}
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
     volumes:
       - .:/app
     ports:

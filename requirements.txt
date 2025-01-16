@@ -5,3 +5,6 @@ chromadb
 faiss-cpu
 langserve[all]
 fastapi
+langgraph
+langsmith
+langchain_anthropic

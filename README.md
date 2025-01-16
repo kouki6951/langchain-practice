@@ -31,17 +31,20 @@ docker-compose up
 ├── docker-compose.yml  # Docker Compose 設定ファイル
 ├── .env                # 環境変数設定ファイル
 ├── src/                # アプリケーションのソースコード
-│   ├── test.py         # LangSmith疎通確認用コード
-│   ├── 00.py           # 環境変数確認用コード
-│   ├── 01.py           # Build a simple LLM application with chat models and prompt templates ~Using Language Models~
-│   ├── 02.py           # Build a simple LLM application with chat models and prompt templates ~Prompt Templates~
-│   ├── 03.py           # Build a Simple LLM Application with LCEL ~Using Language Models~    
-│   ├── 04.py           # Build a Simple LLM Application with LCEL ~OutputParsers~    
-│   ├── 05.py           # Build a Simple LLM Application with LCEL ~Prompt Templates~    
-│   ├── 06.py           # Build a Simple LLM Application with LCEL ~Chaining together components with LCEL~    
-│   ├── serve.py        # Build a Simple LLM Application with LCEL ~Serving with LangServe~  ☆詳細は後述
-│   ├── client.py       # Build a Simple LLM Application with LCEL ~Serving with LangServe~  ☆詳細は後述     
-│   └── 04.py           # 
+|   ├ LangChain/
+    │   ├── test.py     # LangSmith疎通確認用コード
+    │   ├── 00.py       # 環境変数確認用コード
+    │   ├── 01.py       # Build a simple LLM application with chat models and prompt templates - Using Language Models
+    │   ├── 02.py       # Build a simple LLM application with chat models and prompt templates - Prompt Templates~
+    │   ├── 03.py       # Build a Simple LLM Application with LCEL - Using Language Models    
+    │   ├── 04.py       # Build a Simple LLM Application with LCEL - OutputParsers    
+    │   ├── 05.py       # Build a Simple LLM Application with LCEL - Prompt Templates    
+    │   ├── 06.py       # Build a Simple LLM Application with LCEL - Chaining together components with LCEL   
+    │   ├── serve.py    # Build a Simple LLM Application with LCEL - Serving with LangServe  ☆詳細は後述
+    │   └── client.py   # Build a Simple LLM Application with LCEL - Serving with LangServe  ☆詳細は後述     
+    └ LangGraph/
+        └── part1.py    # LangGraph Quickstart - Part 1: Build a Basic Chatbot
+
 ├── Dockerfile          # アプリケーション用 Dockerfile
 ├── requirements.txt    # Python依存パッケージ定義ファイル
 └── README.md
