@@ -2,34 +2,25 @@
 # LangGraph Quickstart
 # https://langchain-ai.github.io/langgraph/tutorials/introduction/
 #
-# Part 1: Build a Basic Chatbot
+# Part 2: Enhancing the Chatbot with Tools
+# TavilySearch(AIエンジン用に設計された検索エンジンAPI)を使用する。
 #
 ######################################################################
 from typing import Annotated
+
 from langchain_anthropic import ChatAnthropic
+from langchain_community.tools.tavily_search import TavilySearchResults
+from langchain_core.messages import BaseMessage
 from typing_extensions import TypedDict
-from langgraph.graph import StateGraph, START, END
+
+from langgraph.graph import StateGraph
 from langgraph.graph.message import add_messages
+from langgraph.prebuilt import ToolNode, tools_condition
 
 ######################################################################
 # State定義
-# StateとはLangGraph内で現在の状態を保存すrう要素
-# グラフ内のノードやエッジにわたされ、グラフがどの段階にあるかやどのタスクが
-# 進行中なのかを記録する
-# Memo1
-#  TypedDictを継承することによって、辞書のキーとその値の型(type)を指定する
-#  ことができる。
-# Memo2
-#  Annotatedを使用し、型に対するメタデータを指定する。
-# Memo3
-#  add_messagesとは、LangGraphライブラリで提供されるメッセージ処理のための
-#  ユーティリティ関数のこと。
-# Memo4
-#  Memo1/Memo2/Memo3をまとめると、Stateという辞書型のクラスには、messages
-# というキーが存在し、その値はlist型であり、add_messageというメタデータが付
-#  加されている。
 ######################################################################
-class State(TypedDict): # 
+class State(TypedDict):
     messages: Annotated[list, add_messages]
 
 ######################################################################
@@ -38,26 +29,56 @@ class State(TypedDict): #
 graph_builder = StateGraph(State)
 
 ######################################################################
+# ツールの定義
+# memo1
+# TravilySearchResultsを実行するとTravilySearchAPIに対してクエリを実行し、
+# 結果をJSON形式で返却する。
+######################################################################
+tool = TavilySearchResults(max_results=2)
+tools = [tool]
+
+######################################################################
 # 言語モデル（Anthropic LLM）の初期化
+# memo1
+# bind_tools：外部ツールをモデルに結び付ける
 ######################################################################
 llm = ChatAnthropic(model="claude-3-5-sonnet-20240620")
+llm_with_tools = llm.bind_tools(tools)
 
 ######################################################################
 # チャットボットのノード関数定義
 ######################################################################
 def chatbot(state: State):
-    return {"messages": [llm.invoke(state["messages"])]}
+    return {"messages": [llm_with_tools.invoke(state["messages"])]}
 
 ######################################################################
 # ノードの追加
 ######################################################################
 graph_builder.add_node("chatbot", chatbot)
+tool_node = ToolNode(tools=[tool])
+graph_builder.add_node("tools", tool_node)
+
+######################################################################
+# 条件付きエッジを追加
+# memo1
+#  "chatbot"の実行後、tools_conditionsがTrueを返す時にツールノードが実行さ
+#  れる。
+# memo2
+#  tools_conditionは現在の状態(State)を確認し、外部ツールを呼び出す必要が
+#  あるかを判定する
+######################################################################
+graph_builder.add_conditional_edges(
+    "chatbot",
+    tools_condition,
+)
 
 ######################################################################
 # ノード間の遷移(エッジ)の追加
 ######################################################################
-graph_builder.add_edge(START, "chatbot")    # STARTノードからchatbotノードへの遷移
-graph_builder.add_edge("chatbot", END)      # chatbotノードからENDノードへの遷移
+# toolsノードが実行された場合、再び"chatbot"ノードに遷移するように設定
+graph_builder.add_edge("tools", "chatbot")
+# グラフの最初のノードを"chatbot"に設定
+graph_builder.set_entry_point("chatbot")
 
 ######################################################################
 # グラフのコンパイル

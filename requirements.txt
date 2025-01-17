@@ -8,3 +8,5 @@ fastapi
 langgraph
 langsmith
 langchain_anthropic
+tavily-python
+langchain_community
