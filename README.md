@@ -43,7 +43,10 @@ docker-compose up
     │   ├── serve.py    # Build a Simple LLM Application with LCEL - Serving with LangServe  ☆詳細は後述
     │   └── client.py   # Build a Simple LLM Application with LCEL - Serving with LangServe  ☆詳細は後述     
     └ LangGraph/
-        └── part1.py    # LangGraph Quickstart - Part 1: Build a Basic Chatbot
+        ├── part1.py    # LangGraph Quickstart - Part 1: Build a Basic Chatbot
+        ├── part2.py    # LangGraph Quickstart - Part 2: Enhancing the Chatbot with Tools
+        ├── part3.py    # LangGraph Quickstart - Part 3: Adding Memory to the Chatbot
+        ├── part4.py    # LangGraph Quickstart - Part 4: Human-in-the-loop
 
 ├── Dockerfile          # アプリケーション用 Dockerfile
 ├── requirements.txt    # Python依存パッケージ定義ファイル
