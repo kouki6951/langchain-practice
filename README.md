@@ -39,7 +39,8 @@ docker-compose up
     │   ├── 03.py       # Build a Simple LLM Application with LCEL - Using Language Models    
     │   ├── 04.py       # Build a Simple LLM Application with LCEL - OutputParsers    
     │   ├── 05.py       # Build a Simple LLM Application with LCEL - Prompt Templates    
-    │   ├── 06.py       # Build a Simple LLM Application with LCEL - Chaining together components with LCEL   
+    │   ├── 06.py       # Build a Simple LLM Application with LCEL - Chaining together components with LCEL
+    │   ├── 07.py       # How to use chat models to call tools
     │   ├── serve.py    # Build a Simple LLM Application with LCEL - Serving with LangServe  ☆詳細は後述
     │   └── client.py   # Build a Simple LLM Application with LCEL - Serving with LangServe  ☆詳細は後述     
     └ LangGraph/
@@ -47,6 +48,7 @@ docker-compose up
         ├── part2.py    # LangGraph Quickstart - Part 2: Enhancing the Chatbot with Tools
         ├── part3.py    # LangGraph Quickstart - Part 3: Adding Memory to the Chatbot
         ├── part4.py    # LangGraph Quickstart - Part 4: Human-in-the-loop
+        ├── part5.py    # LangGraph Quickstart - Part 5: Customizing State
 
 ├── Dockerfile          # アプリケーション用 Dockerfile
 ├── requirements.txt    # Python依存パッケージ定義ファイル

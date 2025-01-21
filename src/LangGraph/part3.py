@@ -51,8 +51,6 @@ llm_with_tools = llm.bind_tools(tools)
 ######################################################################
 def chatbot(state: State):
     return {"messages": [llm_with_tools.invoke(state["messages"])]}
-def chatbot(state: State):
-    return {"messages": [llm_with_tools.invoke(state["messages"])]}
 
 ######################################################################
 # ノードの追加
