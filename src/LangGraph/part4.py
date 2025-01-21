@@ -3,7 +3,6 @@
 # https://langchain-ai.github.io/langgraph/tutorials/introduction/
 #
 # Part 4: Human-in-the-loop
-# i
 #
 ######################################################################
 from typing import Annotated
